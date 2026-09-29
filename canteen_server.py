@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, render_template, jsonify, request
 
 app=Flask(__name__)
 
@@ -6,7 +6,7 @@ menu={"Poha": 30, "tea":15, "sandwich": 50}
 
 @app.route("/menu")
 def get_menu():
-    return jsonify(menu)
+    return render_template('index.html')
 
 @app.route("/order", methods=["POST"])
 def place_order():
@@ -19,4 +19,4 @@ def place_order():
         "total": total,
         "status": "Order Placed"
     })
-app.run(port=5000)
+app.run(host="0.0.0.0",port=5000)
